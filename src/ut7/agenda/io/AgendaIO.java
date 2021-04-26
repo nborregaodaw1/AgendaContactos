@@ -6,7 +6,7 @@ import ut7.agenda.modelo.Profesional;
 import ut7.agenda.modelo.Relacion;
 
 /**
- * Utilidades para cargar la agenda
+ * Utilidades para cargar la agendaaaaaaaaaaaaaaaaaaaaaaaa
  * @author Iker Iparraguirre, Jon García, Naiara Borrega
  */
 public class AgendaIO {
@@ -15,7 +15,7 @@ public class AgendaIO {
 	 * Este método importa todos los contactos que se obtienen del metodo<br>
 	 * obtenerLineasDatos().
 	 * 
-	 * @param agenda - Agenda donde se importaran los contacto
+	 * @param agenda - Agenda donde se importaran los contactos
 	 */
 	public static void importar(AgendaContactos agenda) {
 		for (int i = 0; i < obtenerLineasDatos().length; i++) {
