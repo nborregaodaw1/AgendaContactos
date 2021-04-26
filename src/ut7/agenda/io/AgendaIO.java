@@ -6,7 +6,7 @@ import ut7.agenda.modelo.Profesional;
 import ut7.agenda.modelo.Relacion;
 
 /**
- * Utilidades para cargar la agendaaaaaaaaaaaaaaaaaaaaaaaa
+ * Utilidades para cargar la agenda
  * @author Iker Iparraguirre, Jon García, Naiara Borrega
  */
 public class AgendaIO {
