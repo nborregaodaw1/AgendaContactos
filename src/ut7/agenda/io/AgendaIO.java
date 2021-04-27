@@ -1,5 +1,9 @@
 package ut7.agenda.io;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 import ut7.agenda.modelo.AgendaContactos;
 import ut7.agenda.modelo.Contacto;
 import ut7.agenda.modelo.Personal;
@@ -14,22 +18,30 @@ import ut7.agenda.modelo.Relacion;
 public class AgendaIO {
 
 	/**
-	 * Este método importa todos los contactos que se obtienen del metodo<br>
-	 * obtenerLineasDatos().
+	 * Este método importa todos los contactos que se obtienen a través de<br>
+	 * un fichero csv
 	 * 
 	 * @param agenda - Agenda donde se importaran los contactos
 	 */
-	public static void importar(AgendaContactos agenda) {
+	public static int importar(AgendaContactos agenda, String ruta) {
+		int contador = 0;
 
-		for (int i = 0; i < obtenerLineasDatos().length; i++) {
-			agenda.añadirContacto(parsearLinea(obtenerLineasDatos()[i]));
+		try {
+			Scanner sc = new Scanner(new File(ruta));
+			while (sc.hasNextLine()) {
+				agenda.añadirContacto(parsearLinea(sc.nextLine()));
+			}
+		} catch (FileNotFoundException fnf) {
+			System.out.println("La ruta especificada no es valida");
+		} catch (NumberFormatException nfe) {
+			contador++;
 		}
+
+		return contador;
+
 	}
 
-	private static Contacto parsearLinea(String linea) throws NumberFormatException {
-
-		// NumberFormatException es la excepcion que debe de saltar..
-
+	private static Contacto parsearLinea(String linea) {
 		String[] split = linea.split(",");
 		for (int i = 0; i < split.length; i++) {
 			split[i] = split[i].trim();
@@ -43,7 +55,6 @@ public class AgendaIO {
 					Relacion.valueOf(split[6].toUpperCase()));
 			return p;
 		}
-
 	}
 
 }
