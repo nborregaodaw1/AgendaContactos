@@ -44,6 +44,12 @@ public class AgendaIO {
 
 	}
 	
+	/**
+	 *  Este metodo privado parsea la linea y devuelve un Contacto Personal o Profesional.
+	 *  
+	 *  @throws NumberFormatException si la fecha no esta bien parseada.
+	 *  */
+	
 	private static Contacto parsearLinea(String linea) throws NumberFormatException{
 		
 		String[] split = linea.split(",");
