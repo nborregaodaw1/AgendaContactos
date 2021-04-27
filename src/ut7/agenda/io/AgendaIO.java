@@ -22,7 +22,7 @@ public class AgendaIO {
 	 * un fichero csv
 	 * 
 	 * @param agenda - Agenda donde se importaran los contactos
-	 * @param ruta - Ruta donde se encuentra el archivo csv a importar
+	 * @param ruta - Ruta donde se encuentra el archivo csv a importar.
 	 */
 	public static int importar(AgendaContactos agenda, String ruta) {
 		int contador = 0;
