@@ -22,6 +22,7 @@ public class AgendaIO {
 	 * un fichero csv
 	 * 
 	 * @param agenda - Agenda donde se importaran los contactos
+	 * @param ruta - Ruta donde se encuentra el archivo csv a importar.
 	 */
 	public static int importar(AgendaContactos agenda, String ruta) {
 		int contador = 0;
@@ -46,6 +47,7 @@ public class AgendaIO {
 	 *  
 	 *  @throws NumberFormatException si la fecha no esta bien parseada.
 	 *  */
+
 	private static Contacto parsearLinea(String linea) throws NumberFormatException{
 		
 		String[] split = linea.split(",");

@@ -13,7 +13,7 @@ public class TestAgenda {
 
 	public static void main(String[] args) {
 		AgendaContactos agenda = new AgendaContactos();
-		AgendaIO.importar(agenda);
+		System.out.println(AgendaIO.importar(agenda, "agenda.csv") + " líneas erroneas");
 		System.out.println(agenda);
 		separador();
 
