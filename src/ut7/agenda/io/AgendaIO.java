@@ -41,7 +41,8 @@ public class AgendaIO {
 
 	}
 
-	private static Contacto parsearLinea(String linea) {
+	private static Contacto parsearLinea(String linea) throws NumberFormatException{
+		
 		String[] split = linea.split(",");
 		for (int i = 0; i < split.length; i++) {
 			split[i] = split[i].trim();
