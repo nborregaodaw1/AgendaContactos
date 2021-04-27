@@ -35,6 +35,8 @@ public class TestAgenda {
 
 		personalesPorRelacion(agenda);
 		separador();
+		
+		AgendaIO.exportarPersonales(agenda, "personales-relacion.txt");
 
 	}
 

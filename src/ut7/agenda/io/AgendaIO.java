@@ -2,6 +2,8 @@ package ut7.agenda.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 import ut7.agenda.modelo.AgendaContactos;
@@ -42,7 +44,6 @@ public class AgendaIO {
 
 	}
 	
-	/*dsfdfsfd*/
 	private static Contacto parsearLinea(String linea) throws NumberFormatException{
 		
 		String[] split = linea.split(",");
@@ -60,4 +61,30 @@ public class AgendaIO {
 		}
 	}
 
+	/**
+	 * Este método exporta los contactos de la agenda que sean personales a un archivo txt.
+	 * 
+	 * @param agenda - Agenda donde se importaran los contactos
+	 * @param ruta - El nombre del archivo donde queramos exportar.
+	 */
+	public static void exportarPersonales(AgendaContactos agenda, String ruta) {
+		FileWriter fw = null;
+		
+		try {
+			fw = new FileWriter(ruta);
+			for (Relacion rel : agenda.personalesPorRelacion().keySet()) {
+				fw.write(rel + "\n");
+				fw.write("\t" + agenda.personalesPorRelacion().get(rel) + "\n");
+			}
+			
+		} catch (IOException e) {
+			
+		} finally {
+			try {
+				fw.close();
+			} catch (IOException e) {
+				
+			}
+		}
+	}
 }
