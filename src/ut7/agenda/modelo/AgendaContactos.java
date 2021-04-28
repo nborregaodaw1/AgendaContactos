@@ -196,6 +196,7 @@ public class AgendaContactos {
 			}
 			output += bloque;
 		}
+		output += "(" + totalContactos() + " contacto/s)";
 		return output;
 	}
 }

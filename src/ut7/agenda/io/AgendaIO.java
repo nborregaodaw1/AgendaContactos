@@ -28,30 +28,34 @@ public class AgendaIO {
 	 */
 	public static int importar(AgendaContactos agenda, String ruta) {
 		int contador = 0;
-
 		try {
 			Scanner sc = new Scanner(new File(ruta));
 			while (sc.hasNextLine()) {
-				agenda.añadirContacto(parsearLinea(sc.nextLine()));
+
+				try {
+					agenda.añadirContacto(parsearLinea(sc.nextLine()));
+				} catch (NumberFormatException nfe) {
+					contador++;
+				} catch (IllegalArgumentException iae) {
+					contador++;
+				}
 			}
 		} catch (FileNotFoundException fnf) {
 			System.out.println("La ruta especificada no es valida");
-		} catch (NumberFormatException nfe) {
-			contador++;
 		}
-
 		return contador;
 
 	}
-	
+
 	/**
-	 *  Este metodo privado parsea la linea y devuelve un Contacto Personal o Profesional.
-	 *  
-	 *  @throws NumberFormatException si la fecha no esta bien parseada.
-	 *  */
-	
-	private static Contacto parsearLinea(String linea) throws NumberFormatException{
-		
+	 * Este metodo privado parsea la linea y devuelve un Contacto Personal o
+	 * Profesional.
+	 * 
+	 * @throws NumberFormatException si la fecha no esta bien parseada.
+	 */
+
+	private static Contacto parsearLinea(String linea) throws NumberFormatException {
+
 		String[] split = linea.split(",");
 		for (int i = 0; i < split.length; i++) {
 			split[i] = split[i].trim();
@@ -68,28 +72,29 @@ public class AgendaIO {
 	}
 
 	/**
-	 * Este método exporta los contactos de la agenda que sean personales a un archivo txt.
+	 * Este método exporta los contactos de la agenda que sean personales a un
+	 * archivo txt.
 	 * 
 	 * @param agenda - Agenda donde se importaran los contactos
-	 * @param ruta - El nombre del archivo donde queramos exportar.
+	 * @param ruta   - El nombre del archivo donde queramos exportar.
 	 */
 	public static void exportarPersonales(AgendaContactos agenda, String ruta) {
 		FileWriter fw = null;
-		
+
 		try {
 			fw = new FileWriter(ruta);
 			for (Relacion rel : agenda.personalesPorRelacion().keySet()) {
 				fw.write(rel + "\n");
 				fw.write("\t" + agenda.personalesPorRelacion().get(rel) + "\n");
 			}
-			
+
 		} catch (IOException e) {
-			
+
 		} finally {
 			try {
 				fw.close();
 			} catch (IOException e) {
-				
+
 			}
 		}
 	}
